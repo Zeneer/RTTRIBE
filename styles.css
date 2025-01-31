@@ -164,13 +164,13 @@ body {
     color: white;
 }
 
-/* 🔹 Navbar fija en la parte superior */
+/* 🔹 Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #1E1E1E;
-    padding: 15px 30px;
+    padding: 12px 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     position: fixed;
     width: 100%;
@@ -181,14 +181,14 @@ body {
 
 /* 🔹 Ajuste del Logo */
 .logo-visible {
-    width: 80px;
+    width: 90px;
     height: auto;
 }
 
-/* 🔹 Estilos de los enlaces en la barra */
+/* 🔹 Estilos de los enlaces GI / NO GI */
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
 .nav-links a {
@@ -203,7 +203,119 @@ body {
     color: #EB1C22;
 }
 
-/* 🔹 Estilos del menú de perfil */
+/* 🔹 Sección de videos */
+.video-section {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    color: #EB1C22;
+    font-size: 24px;
+}
+
+.view-all {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.view-all:hover {
+    color: #EB1C22;
+}
+
+/* 🔹 Carrusel de videos */
+.video-carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding: 10px;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.video-container::-webkit-scrollbar {
+    display: none;
+}
+
+.video-card {
+    background: #1E1E1E;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    min-width: 300px;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+}
+
+.video-card video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* 🔹 Botones del carrusel */
+.prev-btn, .next-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* 🔹 Responsividad */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+    }
+
+    .content {
+        margin-top: 100px;
+    }
+
+    .video-container {
+        max-width: 100%;
+    }
+}
+
+/* 🔹 Contenedor del menú de usuario */
 .profile-menu {
     position: relative;
     display: flex;
@@ -211,13 +323,21 @@ body {
     cursor: pointer;
 }
 
-.profile-icon {
+/* 🔹 Checkbox oculto */
+#menu-toggle {
+    display: none;
+}
+
+/* 🔹 Icono del usuario (Avatar) */
+.profile-icon img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #EB1C22;
+    cursor: pointer;
 }
 
+/* 🔹 Dropdown Oculto */
 .profile-dropdown {
     display: none;
     position: absolute;
@@ -228,8 +348,15 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     width: 150px;
     overflow: hidden;
+    z-index: 2000;
 }
 
+/* 🔹 Mostrar el menú cuando el checkbox esté marcado */
+#menu-toggle:checked ~ .profile-dropdown {
+    display: block;
+}
+
+/* 🔹 Estilos de los enlaces en el menú */
 .profile-dropdown a {
     display: block;
     padding: 12px;
@@ -242,41 +369,64 @@ body {
     background-color: #EB1C22;
 }
 
-/* Mostrar el dropdown al pasar el mouse */
-.profile-menu:hover .profile-dropdown {
-    display: block;
-}
-
-/* 🔹 Contenido Principal */
-.content {
-    margin-top: 70px;
+/* 🔹 Estilos del Carrusel */
+.video-section {
+    margin-top: 100px;
     padding: 20px;
-    text-align: center;
 }
 
-/* 🔹 Sección de videos */
-.video-section h2 {
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
     color: #EB1C22;
     font-size: 24px;
-    margin-bottom: 20px;
 }
 
-/* 🔹 Grid de videos */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-content: center;
+.view-all {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
 }
 
-/* 🔹 Tarjetas de videos */
+.view-all:hover {
+    color: #EB1C22;
+}
+
+.video-carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding: 10px;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.video-container::-webkit-scrollbar {
+    display: none;
+}
+
 .video-card {
     background: #1E1E1E;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     padding: 15px;
+    min-width: 300px;
 }
 
 .video-card:hover {
@@ -286,25 +436,30 @@ body {
 .video-card video {
     width: 100%;
     display: block;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-.video-info {
-    text-align: center;
-    margin-top: 10px;
+/* 🔹 Botones del carrusel */
+.prev-btn, .next-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.video-info h3 {
-    font-size: 18px;
-    color: white;
+.prev-btn {
+    left: 10px;
 }
 
-.video-info p {
-    font-size: 14px;
-    color: #ccc;
+.next-btn {
+    right: 10px;
 }
 
-/* 🔹 Responsive */
+/* 🔹 Responsividad */
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -312,15 +467,16 @@ body {
         padding: 10px;
     }
 
-    .navbar-left {
-        margin-bottom: 10px;
-    }
-
     .nav-links {
         margin-top: 10px;
     }
 
     .content {
-        margin-top: 90px;
+        margin-top: 100px;
+    }
+
+    .video-container {
+        max-width: 100%;
     }
 }
+
